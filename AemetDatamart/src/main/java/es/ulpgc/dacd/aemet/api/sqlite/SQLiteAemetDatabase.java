@@ -5,6 +5,7 @@ import es.ulpgc.dacd.aemet.api.model.Weather;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import static java.sql.DriverManager.getConnection;
 
@@ -46,8 +47,6 @@ public class SQLiteAemetDatabase implements AemetSQLite{
         } finally {
             conn.close();
         }
-
-
     }
 
     public void insertMinWeather(Weather weather) throws  SQLException{
@@ -59,8 +58,9 @@ public class SQLiteAemetDatabase implements AemetSQLite{
 
 
 
+
     private void createTable(Statement statement) throws SQLException {
-        statement.execute("CREATE TABLE IF NOT EXISTS maxtemperatures (" +
+        statement.execute("CREATE TABLE IF NOT EXISTS maxTemperatures (" +
                 "place TEXT," +
                 "station TEXT," +
                 "date TEXT," +
@@ -68,12 +68,13 @@ public class SQLiteAemetDatabase implements AemetSQLite{
                 "temperature REAL" +
                 ");");
 
-        statement.execute("CREATE TABLE IF NOT EXISTS mintemperatures (" +
+        statement.execute("CREATE TABLE IF NOT EXISTS minTemperatures (" +
                 "place TEXT," +
                 "station TEXT," +
                 "date TEXT," +
                 "time TEXT," +
                 "temperature REAL" +
                 ");");
+
     }
 }

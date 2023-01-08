@@ -1,27 +1,23 @@
 package es.ulpgc.dacd.aemet.api.model;
 
+import java.util.Date;
+
 public class Weather {
-    public String date;
-    public String time;
+    public Date ts;
     public String station;
     public String place;
     public double temperature;
 
 
-    public Weather(String date, String time, String station, String place, double temperature) {
-        this.date = date;
-        this.time = time;
+    public Weather(Date ts, String station, String place, double temperature) {
+        this.ts = ts;
         this.station = station;
         this.place = place;
         this.temperature = temperature;
 
     }
 
-    public String getDate() { return date;}
-
-    public String getTime() {
-        return time;
-    }
+    public Date getDate() { return ts;}
 
     public String getStation() {
         return station;

@@ -1,6 +1,7 @@
 package es.ulpgc.dacd.aemet.api;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,7 +16,7 @@ public class Main {
             public void run() {
                 try {
                     controller.run();
-                } catch (IOException e) {
+                } catch (IOException | ParseException e) {
                     throw new RuntimeException(e);
                 }
                 System.out.println("Los datos se han actualizado correctamente.");

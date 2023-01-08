@@ -9,7 +9,10 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,7 +20,7 @@ public class AemetApiReader implements Sensor {
     private static final String API_URL = "https://opendata.aemet.es/opendata/api/observacion/convencional/todas";
     private static final String apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXV1bHJpdmVyb29AZ21haWwuY29tIiwianRpIjoiNDk4Y2RkZDgtY2UxZC00NGMxLWFkYTItZjc0Y2VhNDA3NTYwIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2NzI2NjU0OTUsInVzZXJJZCI6IjQ5OGNkZGQ4LWNlMWQtNDRjMS1hZGEyLWY3NGNlYTQwNzU2MCIsInJvbGUiOiIifQ.FLxIx1Txh_pfVLx1B5hlPgznoEHO2vLxIxiyRzEFm30";
 
-    public List<Weather> getData() {
+    public List<Weather> getData() throws ParseException {
         String response = getResponse(API_URL);
 
         JSONObject responsejson = new JSONObject(response);
@@ -28,7 +31,7 @@ public class AemetApiReader implements Sensor {
         return parseData(responsedata);
     }
 
-    private List<Weather> parseData(String data) {
+    private List<Weather> parseData(String data) throws ParseException {
         JsonArray jsonArray = new JsonParser().parse(data).getAsJsonArray();
         List<Weather> datos = new ArrayList<>();
 
@@ -39,13 +42,11 @@ public class AemetApiReader implements Sensor {
 
             if (27.5 < lat && lat < 28.4 && -16 < lon && lon < -15) {
                 String place = jsonObject.get("ubi").getAsString();
-                String ts = jsonObject.get("fint").getAsString();
-                String date = ts.substring(0, 10);
-                String time = ts.substring(11);
+                Date ts = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(jsonObject.get("fint").getAsString());
                 double temperature = jsonObject.get("ta").getAsDouble();
                 String station = jsonObject.get("idema").getAsString();
 
-                datos.add(new Weather(date, time, station, place, temperature));
+                datos.add(new Weather(ts, station, place, temperature));
             }
         }
 

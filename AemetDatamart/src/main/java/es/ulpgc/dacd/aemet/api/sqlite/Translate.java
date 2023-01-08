@@ -2,6 +2,9 @@ package es.ulpgc.dacd.aemet.api.sqlite;
 
 import es.ulpgc.dacd.aemet.api.model.Weather;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Translate {
     private Translate() {
     }
@@ -11,6 +14,7 @@ public class Translate {
 
     private static final String INSERT_MINWEATHER =
             "INSERT INTO mintemperatures(date, station, place, time, temperature) VALUES('%s', '%s', '%s', '%s', '%f');";
+
 
     public static String insertmaxWeather(Weather weather){
         return String.format(INSERT_MAXWEATHER,
@@ -29,4 +33,5 @@ public class Translate {
                 weather.time,
                 weather.temperature);
     }
+
 }

@@ -3,8 +3,8 @@ package es.ulpgc.dacd.aemet.api.datalake;
 import com.google.gson.Gson;
 import es.ulpgc.dacd.aemet.api.model.Weather;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,28 +15,46 @@ import static java.lang.String.*;
 
 public class FileDatalake implements Datalake{
 
-    public void createFile(List<Weather> eventos) throws IOException {
+    private final static String PATH_LAST_RECORD_REGISTER = "datalake/lastTimeRegister.data";
+
+    public void createFile(List<Weather> events) throws IOException, ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String path = "datalake/" + sdf.format(new Date()) + ".events";
-        initFile(eventos, path);
-    }
+        Date lastDate = readLastTime();
+        if (lastDate != null) {
+            List<Weather> filteredEvents = events.stream()
+                    .filter(event -> event.getDate().after(lastDate))
+                    .collect(Collectors.toList());
+            events = filteredEvents;
+        }
 
-    private void initFile(List<Weather> eventos, String path) throws IOException {
-        List<Weather> eventos1 = eventos.stream()
-                .filter(event -> LocalDate.parse(event.getDate()).equals(LocalDate.now()))
-                .collect(Collectors.toList());
+
+        if (!events.isEmpty()) createFileLastRecord(events.get(events.size()-1).getDate());
 
         Gson gson = new Gson();
-        DatafileReader datafileReader = new DatafileReader();
-        List<Weather> eventos2 = datafileReader.getWeathers(path);
 
 
         try (FileWriter fw = new FileWriter(format(path), true)) {
 
-            fw.append(gson.toJson(eventos1));
+            fw.append(gson.toJson(events));
             fw.append("\n");
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
+
+    private void createFileLastRecord(Date lastDate) throws IOException {
+        try (FileWriter fw = new FileWriter(PATH_LAST_RECORD_REGISTER, false)) {
+            fw.append(lastDate.getTime() + "");
+        }
+    }
+
+    private Date readLastTime() throws IOException {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(PATH_LAST_RECORD_REGISTER))){
+            String line = bufferedReader.readLine();
+            if (line != null) {
+                return new Date(Long.parseLong(line));
+            }
+        }
+        return null;
+    }
+
 }
