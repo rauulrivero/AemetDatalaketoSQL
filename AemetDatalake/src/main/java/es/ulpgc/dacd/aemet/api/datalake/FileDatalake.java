@@ -6,7 +6,6 @@ import es.ulpgc.dacd.aemet.api.model.Weather;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,15 +16,14 @@ public class FileDatalake implements Datalake{
 
     private final static String PATH_LAST_RECORD_REGISTER = "datalake/lastTimeRegister.data";
 
-    public void createFile(List<Weather> events) throws IOException, ParseException {
+    public void createFile(List<Weather> events) throws IOException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String path = "datalake/" + sdf.format(new Date()) + ".events";
         Date lastDate = readLastTime();
         if (lastDate != null) {
-            List<Weather> filteredEvents = events.stream()
+            events = events.stream()
                     .filter(event -> event.getDate().after(lastDate))
                     .collect(Collectors.toList());
-            events = filteredEvents;
         }
 
 

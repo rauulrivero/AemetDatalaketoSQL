@@ -17,14 +17,14 @@ public class Main {
                 try {
                     controller.run();
                 } catch (IOException | ParseException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("No se ha podido almacenar los datos en el datalake");
                 }
                 System.out.println("Los datos se han actualizado correctamente.");
             }
         };
 
 
-        timer.scheduleAtFixedRate(tarea, 10 * 1000, 60 * 60 * 1000);
+        timer.scheduleAtFixedRate(tarea, (long) 10 * 1000, (long) 60 * 60 * 1000);
     }
 
 

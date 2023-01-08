@@ -5,7 +5,7 @@ public class Weather {
     public String time;
     public String station;
     public String place;
-    public double temperature;
+    public final double temperature;
 
 
     public Weather(String date, String time, String station, String place, double temperature) {
@@ -33,9 +33,6 @@ public class Weather {
 
     public double getTemperature() {
         return temperature;
-    }
-
-    public void setTemperature(double temperature) {
     }
 
     public void setDate(String date) {

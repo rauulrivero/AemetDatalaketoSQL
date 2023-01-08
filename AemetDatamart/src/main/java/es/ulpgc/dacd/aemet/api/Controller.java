@@ -2,7 +2,9 @@ package es.ulpgc.dacd.aemet.api;
 
 import es.ulpgc.dacd.aemet.api.command.Command;
 import es.ulpgc.dacd.aemet.api.datalake.DatafileReader;
+import es.ulpgc.dacd.aemet.api.datalake.Datalake;
 import es.ulpgc.dacd.aemet.api.model.Weather;
+import es.ulpgc.dacd.aemet.api.sqlite.AemetSQLite;
 import es.ulpgc.dacd.aemet.api.sqlite.SQLiteAemetDatabase;
 
 import java.io.IOException;
@@ -12,8 +14,8 @@ import java.util.List;
 public class Controller {
 
 
-    private final SQLiteAemetDatabase sqLiteAemetDatabase;
-    private final DatafileReader datafileReader;
+    private final AemetSQLite sqLiteAemetDatabase;
+    private final Datalake datafileReader;
 
     public Controller() {
         sqLiteAemetDatabase = new SQLiteAemetDatabase();

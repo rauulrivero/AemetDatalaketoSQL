@@ -3,11 +3,11 @@ package es.ulpgc.dacd.aemet.api.model;
 import java.time.LocalDate;
 
 public class Weather {
-    private LocalDate date;
-    private String time;
-    private String station;
-    private String place;
-    private double temperature;
+    private final LocalDate date;
+    private final String time;
+    private final String station;
+    private final String place;
+    private final double temperature;
 
 
     public Weather(LocalDate date, String time, String station, String place, double temperature) {

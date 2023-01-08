@@ -3,10 +3,10 @@ package es.ulpgc.dacd.aemet.api.model;
 import java.util.Date;
 
 public class Weather {
-    public Date ts;
-    public String station;
-    public String place;
-    public double temperature;
+    public final Date ts;
+    public final String station;
+    public final String place;
+    public final double temperature;
 
 
     public Weather(Date ts, String station, String place, double temperature) {

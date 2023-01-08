@@ -5,7 +5,6 @@ import es.ulpgc.dacd.aemet.api.model.Weather;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 
 import static java.sql.DriverManager.getConnection;
 
@@ -13,8 +12,7 @@ public class SQLiteAemetDatabase implements AemetSQLite{
     public static final String PATH_DATAMART = "C:/Users/rauul/Desktop/GCID 2º/DACD/AemetApiDatalake/datamart/datamart.db";
     private Connection conn;
     public void init() throws SQLException {
-        String dbPath = PATH_DATAMART;
-        conn = connect(dbPath);
+        conn = connect(PATH_DATAMART);
         Statement statement = conn.createStatement();
         deleteTable(statement, "maxtemperatures");
         deleteTable(statement, "mintemperatures");
@@ -43,7 +41,7 @@ public class SQLiteAemetDatabase implements AemetSQLite{
         try {
             statement = conn.createStatement();
             conn = connect(PATH_DATAMART);
-            statement.execute(Translate.insertmaxWeather(weather));
+            statement.execute(Translate.insertMaxWeather(weather));
         } finally {
             conn.close();
         }

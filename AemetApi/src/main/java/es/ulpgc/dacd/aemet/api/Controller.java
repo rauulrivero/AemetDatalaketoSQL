@@ -5,7 +5,6 @@ import es.ulpgc.dacd.aemet.api.restapi.WebService;
 import es.ulpgc.dacd.aemet.api.sqlite.SQLiteConnection;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {

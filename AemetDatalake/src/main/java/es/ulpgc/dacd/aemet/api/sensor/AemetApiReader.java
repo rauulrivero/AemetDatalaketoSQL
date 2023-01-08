@@ -18,9 +18,9 @@ import java.util.List;
 
 public class AemetApiReader implements Sensor {
     private static final String API_URL = "https://opendata.aemet.es/opendata/api/observacion/convencional/todas";
-    private static final String apiKey = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXV1bHJpdmVyb29AZ21haWwuY29tIiwianRpIjoiNDk4Y2RkZDgtY2UxZC00NGMxLWFkYTItZjc0Y2VhNDA3NTYwIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2NzI2NjU0OTUsInVzZXJJZCI6IjQ5OGNkZGQ4LWNlMWQtNDRjMS1hZGEyLWY3NGNlYTQwNzU2MCIsInJvbGUiOiIifQ.FLxIx1Txh_pfVLx1B5hlPgznoEHO2vLxIxiyRzEFm30";
+    private static final String API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXV1bHJpdmVyb29AZ21haWwuY29tIiwianRpIjoiNDk4Y2RkZDgtY2UxZC00NGMxLWFkYTItZjc0Y2VhNDA3NTYwIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2NzI2NjU0OTUsInVzZXJJZCI6IjQ5OGNkZGQ4LWNlMWQtNDRjMS1hZGEyLWY3NGNlYTQwNzU2MCIsInJvbGUiOiIifQ.FLxIx1Txh_pfVLx1B5hlPgznoEHO2vLxIxiyRzEFm30";
 
-    public List<Weather> getData() throws ParseException {
+    public List<Weather> getData() throws ParseException, IOException {
         String response = getResponse(API_URL);
 
         JSONObject responsejson = new JSONObject(response);
@@ -53,18 +53,14 @@ public class AemetApiReader implements Sensor {
         return datos;
     }
 
-    private String getResponse(String url) {
-        try {
-            return Jsoup.connect(url)
-                    .validateTLSCertificates(false)
-                    .timeout(6000)
-                    .ignoreContentType(true)
-                    .header("accept", "application/json")
-                    .header("api_key", apiKey)
-                    .method(Connection.Method.GET)
-                    .maxBodySize(0).execute().body();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    private String getResponse(String url) throws IOException {
+        return Jsoup.connect(url)
+                .validateTLSCertificates(false)
+                .timeout(6000)
+                .ignoreContentType(true)
+                .header("accept", "application/json")
+                .header("api_key", API_KEY)
+                .method(Connection.Method.GET)
+                .maxBodySize(0).execute().body();
     }
 }
