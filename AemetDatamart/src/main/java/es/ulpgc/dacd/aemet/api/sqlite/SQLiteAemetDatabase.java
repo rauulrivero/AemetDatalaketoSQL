@@ -15,7 +15,7 @@ public class SQLiteAemetDatabase implements AemetSQLite{
     /**
      * The constant PATH_DATAMART.
      */
-    public static final String PATH_DATAMART = "C:/Users/rauul/Desktop/GCID 2º/DACD/AemetApiDatalake/datamart/datamart.db";
+    public static final String PATH_DATAMART = "datamart/datamart.db";
     private Connection conn;
     public void init() throws SQLException {
         conn = connect();

@@ -8,7 +8,6 @@ import spark.Response;
 import java.time.LocalDate;
 
 import java.util.List;
-import java.util.Timer;
 import java.util.stream.Collectors;
 
 import static es.ulpgc.dacd.aemet.api.Controller.maxweathers;

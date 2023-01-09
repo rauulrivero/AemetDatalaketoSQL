@@ -20,7 +20,7 @@ public class Main {
                     Controller.run();
                     System.out.println("Se ha creado la conexión correctamente.");
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("No se ha podido ontener la conexión para crear la API.");
                 }
 
             }
@@ -28,6 +28,6 @@ public class Main {
 
         // Programar la tarea para ejecutarse cada hora
 
-        timer.scheduleAtFixedRate(tarea, (long) 1000, (long) 60 * 60 * 1000);
+        timer.scheduleAtFixedRate(tarea, (long) 10 * 1000, (long) 60 * 60 * 1000);
     }
 }
