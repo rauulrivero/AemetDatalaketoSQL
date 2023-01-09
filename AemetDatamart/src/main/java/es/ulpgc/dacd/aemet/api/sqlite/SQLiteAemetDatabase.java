@@ -8,7 +8,13 @@ import java.sql.Statement;
 
 import static java.sql.DriverManager.getConnection;
 
+/**
+ * The type Sqlite aemet database.
+ */
 public class SQLiteAemetDatabase implements AemetSQLite{
+    /**
+     * The constant PATH_DATAMART.
+     */
     public static final String PATH_DATAMART = "C:/Users/rauul/Desktop/GCID 2º/DACD/AemetApiDatalake/datamart/datamart.db";
     private Connection conn;
     public void init() throws SQLException {
@@ -20,7 +26,7 @@ public class SQLiteAemetDatabase implements AemetSQLite{
     }
 
     private Connection connect(String dbPath) {
-        Connection conn = null;
+        conn = null;
         try {
             String url = "jdbc:sqlite:" + dbPath;
             conn = getConnection(url);

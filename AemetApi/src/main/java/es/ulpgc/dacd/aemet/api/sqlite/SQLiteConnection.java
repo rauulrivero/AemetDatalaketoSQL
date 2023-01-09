@@ -32,13 +32,16 @@ public class SQLiteConnection implements MySQLite {
 
     private List<Weather> read(String tablename) throws SQLException {
         List<Weather> weathers = new ArrayList<>();
-        Statement statement = conn.createStatement();
-        ResultSet rs = statement.executeQuery("SELECT * FROM " + tablename);
-
-        while (rs.next()) {
-            Weather weather = new Weather(LocalDate.parse(rs.getString("date")), rs.getString("time"),
-                    rs.getString("station"), rs.getString("place"), rs.getDouble("temperature"));
-            weathers.add(weather);
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM " + tablename);
+            while (rs.next()) {
+                Weather weather = new Weather(LocalDate.parse(rs.getString("date")), rs.getString("time"),
+                        rs.getString("station"), rs.getString("place"), rs.getDouble("temperature"));
+                weathers.add(weather);
+            }
+        } finally {
+            conn.close();
         }
         return weathers;
     }

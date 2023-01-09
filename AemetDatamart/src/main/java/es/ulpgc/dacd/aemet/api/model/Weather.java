@@ -1,13 +1,40 @@
 package es.ulpgc.dacd.aemet.api.model;
 
+/**
+ * The type Weather.
+ */
 public class Weather {
-    public String date;
-    public String time;
-    public String station;
-    public String place;
+    /**
+     * The Date.
+     */
+    public final String date;
+    /**
+     * The Time.
+     */
+    public final  String time;
+    /**
+     * The Station.
+     */
+    public final String station;
+    /**
+     * The Place.
+     */
+    public final String place;
+    /**
+     * The Temperature.
+     */
     public final double temperature;
 
 
+    /**
+     * Instantiates a new Weather.
+     *
+     * @param date        the date
+     * @param time        the time
+     * @param station     the station
+     * @param place       the place
+     * @param temperature the temperature
+     */
     public Weather(String date, String time, String station, String place, double temperature) {
         this.date = date;
         this.time = time;
@@ -17,37 +44,47 @@ public class Weather {
 
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public String getDate() { return date;}
 
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
     public String getTime() {
         return time;
     }
 
+    /**
+     * Gets station.
+     *
+     * @return the station
+     */
     public String getStation() {
         return station;
     }
 
+    /**
+     * Gets place.
+     *
+     * @return the place
+     */
     public String getPlace() {
         return place;
     }
 
+    /**
+     * Gets temperature.
+     *
+     * @return the temperature
+     */
     public double getTemperature() {
         return temperature;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public void setStation(String station) {
-        this.station = station;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
 }

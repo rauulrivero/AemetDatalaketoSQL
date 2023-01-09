@@ -11,6 +11,7 @@ import org.jsoup.Jsoup;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +33,7 @@ public class AemetApiReader implements Sensor {
     }
 
     private List<Weather> parseData(String data) throws ParseException {
-        JsonArray jsonArray = new JsonParser().parse(data).getAsJsonArray();
+        JsonArray jsonArray = JsonParser.parseString(data).getAsJsonArray();
         List<Weather> datos = new ArrayList<>();
 
         for (int i = 0; i < jsonArray.size(); i++) {
@@ -42,11 +43,13 @@ public class AemetApiReader implements Sensor {
 
             if (27.5 < lat && lat < 28.4 && -16 < lon && lon < -15) {
                 String place = jsonObject.get("ubi").getAsString();
-                Date ts = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(jsonObject.get("fint").getAsString());
+                String fint = jsonObject.get("fint").getAsString();
+                Date ts = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(fint);
+                LocalDate localDate = LocalDate.parse(fint.substring(0, 10));
                 double temperature = jsonObject.get("ta").getAsDouble();
                 String station = jsonObject.get("idema").getAsString();
 
-                datos.add(new Weather(ts, station, place, temperature));
+                datos.add(new Weather(ts, localDate, station, place, temperature));
             }
         }
 

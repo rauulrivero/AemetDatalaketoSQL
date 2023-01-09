@@ -11,16 +11,29 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * The type Controller.
+ */
 public class Controller {
 
 
     private final AemetSQLite sqLiteAemetDatabase;
     private final Datalake datafileReader;
 
+    /**
+     * Instantiates a new Controller.
+     */
     public Controller() {
         sqLiteAemetDatabase = new SQLiteAemetDatabase();
         datafileReader = new DatafileReader();
     }
+
+    /**
+     * Run.
+     *
+     * @throws IOException  the io exception
+     * @throws SQLException the sql exception
+     */
     public void run() throws IOException, SQLException {
         List<Weather> weathers = datafileReader.getWeathers("C:/Users/rauul/Desktop/GCID 2º/DACD/AemetApiDatalake/datalake");
         List<Weather> maxweathers = Command.maxTemperatureSensors(weathers);

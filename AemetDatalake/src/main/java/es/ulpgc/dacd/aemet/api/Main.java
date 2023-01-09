@@ -16,10 +16,10 @@ public class Main {
             public void run() {
                 try {
                     controller.run();
+                    System.out.println("Los datos se han actualizado correctamente.");
                 } catch (IOException | ParseException e) {
                     System.out.println("No se ha podido almacenar los datos en el datalake");
                 }
-                System.out.println("Los datos se han actualizado correctamente.");
             }
         };
 

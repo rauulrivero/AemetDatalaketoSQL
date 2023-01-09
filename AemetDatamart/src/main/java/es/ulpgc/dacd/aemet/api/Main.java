@@ -5,7 +5,15 @@ import java.sql.SQLException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The type Main.
+ */
 public class Main {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Timer timer = new Timer();
         Controller controller = new Controller();

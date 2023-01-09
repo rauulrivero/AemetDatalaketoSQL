@@ -9,8 +9,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Command.
+ */
 public class Command {
 
+    private Command() {
+    }
+
+    /**
+     * Max temperature sensors list.
+     *
+     * @param weathers the weathers
+     * @return the list
+     */
     public static List<Weather> maxTemperatureSensors(List<Weather> weathers) {
         Map<String, Weather> results = new HashMap<>();
 
@@ -24,7 +36,12 @@ public class Command {
     }
 
 
-
+    /**
+     * Min temperature sensors list.
+     *
+     * @param weathers the weathers
+     * @return the list
+     */
     public static List<Weather> minTemperatureSensors(List<Weather> weathers) {
         Map<String, Weather> results = new HashMap<>();
 
@@ -37,6 +54,12 @@ public class Command {
         return new ArrayList<>(results.values());
     }
 
+    /**
+     * Add list.
+     *
+     * @param jsonArray the json array
+     * @return the list
+     */
     public static List<Weather> add(JsonArray jsonArray) {
         List<Weather> datos = new ArrayList<>();
         for (int i = 0; i < jsonArray.size(); i++) {

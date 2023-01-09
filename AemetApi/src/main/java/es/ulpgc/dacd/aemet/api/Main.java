@@ -10,14 +10,14 @@ public class Main {
     public static void main(String[] args) {
 
         Timer timer = new Timer();
-        Controller controller = new Controller();
+
 
         // Crear una instancia anónima de TimerTask
         TimerTask tarea = new TimerTask() {
             @Override
             public void run() {
                 try {
-                    controller.run();
+                    Controller.run();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
@@ -27,6 +27,6 @@ public class Main {
 
         // Programar la tarea para ejecutarse cada hora
 
-        timer.scheduleAtFixedRate(tarea, 20 * 1000, 60 * 60 * 1000);
+        timer.scheduleAtFixedRate(tarea, (long) 20 * 1000, (long) 60 * 60 * 1000);
     }
 }

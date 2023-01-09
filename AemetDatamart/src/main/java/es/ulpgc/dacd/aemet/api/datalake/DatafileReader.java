@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Datafile reader.
+ */
 public class DatafileReader implements Datalake{
 
     public List<Weather> getWeathers(String pathname) throws IOException {
