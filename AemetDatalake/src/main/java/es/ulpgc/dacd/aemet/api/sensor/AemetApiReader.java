@@ -16,6 +16,9 @@ import java.util.Date;
 import java.util.List;
 
 
+/**
+ * The type Aemet api reader.
+ */
 public class AemetApiReader implements Sensor {
     private static final String API_URL = "https://opendata.aemet.es/opendata/api/observacion/convencional/todas";
     private static final String API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXV1bHJpdmVyb29AZ21haWwuY29tIiwianRpIjoiNDk4Y2RkZDgtY2UxZC00NGMxLWFkYTItZjc0Y2VhNDA3NTYwIiwiaXNzIjoiQUVNRVQiLCJpYXQiOjE2NzI2NjU0OTUsInVzZXJJZCI6IjQ5OGNkZGQ4LWNlMWQtNDRjMS1hZGEyLWY3NGNlYTQwNzU2MCIsInJvbGUiOiIifQ.FLxIx1Txh_pfVLx1B5hlPgznoEHO2vLxIxiyRzEFm30";

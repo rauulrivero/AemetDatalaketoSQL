@@ -10,6 +10,9 @@ public class Weather {
      * The Date.
      */
     public final LocalDate date;
+    /**
+     * The Time.
+     */
     public final String time;
     /**
      * The Station.
@@ -29,6 +32,7 @@ public class Weather {
      * Instantiates a new Weather.
      *
      * @param date        the date
+     * @param time        the time
      * @param station     the station
      * @param place       the place
      * @param temperature the temperature
@@ -49,6 +53,11 @@ public class Weather {
      */
     public LocalDate getDate() { return date;}
 
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
     public String getTime() {
         return time;
     }

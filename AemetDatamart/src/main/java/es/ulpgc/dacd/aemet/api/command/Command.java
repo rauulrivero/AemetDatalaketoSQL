@@ -58,6 +58,7 @@ public class Command {
      *
      * @param jsonArray the json array
      * @return the list
+     * @throws ParseException the parse exception
      */
     public static List<Weather> add(JsonArray jsonArray) throws ParseException {
         List<Weather> datos = new ArrayList<>();

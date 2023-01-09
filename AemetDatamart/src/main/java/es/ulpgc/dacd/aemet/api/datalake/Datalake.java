@@ -15,7 +15,8 @@ public interface Datalake {
      *
      * @param pathname the pathname
      * @return the weathers
-     * @throws IOException the io exception
+     * @throws IOException    the io exception
+     * @throws ParseException the parse exception
      */
     List<Weather> getWeathers(String pathname) throws IOException, ParseException;
 }

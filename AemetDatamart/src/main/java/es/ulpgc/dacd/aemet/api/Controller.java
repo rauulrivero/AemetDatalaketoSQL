@@ -32,8 +32,9 @@ public class Controller {
     /**
      * Run.
      *
-     * @throws IOException  the io exception
-     * @throws SQLException the sql exception
+     * @throws IOException    the io exception
+     * @throws SQLException   the sql exception
+     * @throws ParseException the parse exception
      */
     public void run() throws IOException, SQLException, ParseException {
         List<Weather> weathers = datafileReader.getWeathers("datalake");

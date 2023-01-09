@@ -7,8 +7,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Sq lite connection.
+ */
 public class SQLiteConnection implements MySQLite {
     private Connection conn;
+    /**
+     * The constant PATH_DATAMART.
+     */
     public static final String PATH_DATAMART = "datamart/datamart.db";
 
     public List<Weather> getWeathers(String tableName) throws SQLException {

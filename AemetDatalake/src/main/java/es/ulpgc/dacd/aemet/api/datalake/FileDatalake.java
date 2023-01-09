@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
+/**
+ * The type File datalake.
+ */
 public class FileDatalake implements Datalake{
 
     private static final String PATH_LAST_RECORD_REGISTER = "lastTimeRegister/lastTimeRegister.data";

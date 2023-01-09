@@ -9,13 +9,27 @@ import es.ulpgc.dacd.aemet.api.sqlite.SQLiteConnection;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * The type Controller.
+ */
 public class Controller {
+    /**
+     * The Maxweathers.
+     */
     public static List<Weather> maxweathers;
+    /**
+     * The Minweathers.
+     */
     public static List<Weather> minweathers;
 
     private Controller() {
     }
 
+    /**
+     * Run.
+     *
+     * @throws SQLException the sql exception
+     */
     public static void run() throws SQLException {
         MySQLite sqLiteConnection = new SQLiteConnection();
         APIService webService = new WebService();
