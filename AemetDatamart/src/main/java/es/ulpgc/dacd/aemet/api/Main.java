@@ -2,6 +2,7 @@ package es.ulpgc.dacd.aemet.api;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,16 +25,17 @@ public class Main {
             public void run() {
                 try {
                     controller.run();
-                } catch (IOException | SQLException e) {
-                    throw new RuntimeException(e);
+                    System.out.println("Los datos se han actualizado correctamente.");
+                } catch (IOException | SQLException | ParseException e) {
+                    System.out.println("No se ha podido actualizar la tabla.");
                 }
-                System.out.println("Los datos se han actualizado correctamente.");
             }
         };
 
         // Programar la tarea para ejecutarse cada hora
 
-        timer.scheduleAtFixedRate(tarea, 0, 60 * 60 * 1000);
+        timer.scheduleAtFixedRate(tarea, (long) 1000, (long) 60 * 60 * 1000);
+
     }
 
 }

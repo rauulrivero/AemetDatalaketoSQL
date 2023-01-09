@@ -15,7 +15,7 @@ import static java.lang.String.format;
 
 public class FileDatalake implements Datalake{
 
-    private static final String PATH_LAST_RECORD_REGISTER = "datalake/lastTimeRegister.data";
+    private static final String PATH_LAST_RECORD_REGISTER = "lastTimeRegister/lastTimeRegister.data";
 
     public void createFile(List<Weather> events) throws IOException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -23,7 +23,7 @@ public class FileDatalake implements Datalake{
         Date lastDate = readLastTime();
 
         events = events.stream()
-                .filter(event -> event.getLocalDate().equals(LocalDate.now()))
+                .filter(event -> event.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().equals(LocalDate.now()))
                 .collect(Collectors.toList());
 
         if (lastDate != null) {
@@ -36,12 +36,6 @@ public class FileDatalake implements Datalake{
         if (!events.isEmpty()) createFileLastRecord(events.get(events.size()-1).getDate());
 
         Gson gson = new Gson();
-
-        System.out.println(events.size());
-        for (Weather weather: events) {
-            System.out.println(weather.getPlace());
-            System.out.println(weather.getDate());
-        }
 
         try (FileWriter fw = new FileWriter(format(path), true)) {
             if (!events.isEmpty()) {

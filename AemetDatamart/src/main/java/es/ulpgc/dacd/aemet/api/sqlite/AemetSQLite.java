@@ -17,6 +17,13 @@ public interface AemetSQLite {
     void init() throws SQLException;
 
     /**
+     * Close.
+     *
+     * @throws SQLException the sql exception
+     */
+    void close() throws SQLException;
+
+    /**
      * Insert max weather.
      *
      * @param weather the weather

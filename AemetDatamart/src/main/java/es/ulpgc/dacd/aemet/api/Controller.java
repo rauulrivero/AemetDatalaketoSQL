@@ -9,6 +9,7 @@ import es.ulpgc.dacd.aemet.api.sqlite.SQLiteAemetDatabase;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -34,8 +35,8 @@ public class Controller {
      * @throws IOException  the io exception
      * @throws SQLException the sql exception
      */
-    public void run() throws IOException, SQLException {
-        List<Weather> weathers = datafileReader.getWeathers("C:/Users/rauul/Desktop/GCID 2º/DACD/AemetApiDatalake/datalake");
+    public void run() throws IOException, SQLException, ParseException {
+        List<Weather> weathers = datafileReader.getWeathers("datalake");
         List<Weather> maxweathers = Command.maxTemperatureSensors(weathers);
         List<Weather> minweathers = Command.minTemperatureSensors(weathers);
         saveWeathers(maxweathers, minweathers);

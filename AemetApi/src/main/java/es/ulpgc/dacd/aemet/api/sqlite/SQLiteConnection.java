@@ -9,19 +9,17 @@ import java.util.List;
 
 public class SQLiteConnection implements MySQLite {
     private Connection conn;
+    public static final String PATH_DATAMART = "datamart/datamart.db";
 
-    public List<Weather> getWeathers(String tablename) throws SQLException {
-        String dbPath = "C:/Users/aural/Desktop/GCID 2º/DACD/AemetApiDatalake/datamart/datamart.db";
-        conn = connect(dbPath);
-        List <Weather> weathers = read(tablename);
-        conn.close();
-        return weathers;
+    public List<Weather> getWeathers(String tableName) throws SQLException {
+        conn = connect();
+        return read(tableName);
     }
 
-    private Connection connect(String dbPath) {
+    private Connection connect() {
         conn = null;
         try {
-            String url = "jdbc:sqlite:" + dbPath;
+            String url = "jdbc:sqlite:" + PATH_DATAMART;
             conn = DriverManager.getConnection(url);
             System.out.println("Connection to SQLite has been established.");
         } catch (SQLException e) {

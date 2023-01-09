@@ -45,11 +45,10 @@ public class AemetApiReader implements Sensor {
                 String place = jsonObject.get("ubi").getAsString();
                 String fint = jsonObject.get("fint").getAsString();
                 Date ts = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(fint);
-                LocalDate localDate = LocalDate.parse(fint.substring(0, 10));
                 double temperature = jsonObject.get("ta").getAsDouble();
                 String station = jsonObject.get("idema").getAsString();
 
-                datos.add(new Weather(ts, localDate, station, place, temperature));
+                datos.add(new Weather(ts, station, place, temperature));
             }
         }
 

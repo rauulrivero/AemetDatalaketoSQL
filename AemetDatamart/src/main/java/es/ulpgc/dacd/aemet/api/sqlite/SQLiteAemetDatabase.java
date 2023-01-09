@@ -18,17 +18,22 @@ public class SQLiteAemetDatabase implements AemetSQLite{
     public static final String PATH_DATAMART = "C:/Users/rauul/Desktop/GCID 2º/DACD/AemetApiDatalake/datamart/datamart.db";
     private Connection conn;
     public void init() throws SQLException {
-        conn = connect(PATH_DATAMART);
+        conn = connect();
         Statement statement = conn.createStatement();
-        deleteTable(statement, "maxtemperatures");
-        deleteTable(statement, "mintemperatures");
+        createTable(statement);
+        dropTable(statement, "maxTemperatures");
+        dropTable(statement, "minTemperatures");
         createTable(statement);
     }
 
-    private Connection connect(String dbPath) {
+    public void close() throws SQLException {
+        conn.close();
+    }
+
+    private Connection connect() {
         conn = null;
         try {
-            String url = "jdbc:sqlite:" + dbPath;
+            String url = "jdbc:sqlite:" + PATH_DATAMART;
             conn = getConnection(url);
             System.out.println("Connection to SQLite has been established.");
         } catch (SQLException e) {
@@ -37,30 +42,23 @@ public class SQLiteAemetDatabase implements AemetSQLite{
         return conn;
     }
 
-    private void deleteTable(Statement statement, String tablename) throws SQLException {
+    private void dropTable(Statement statement, String tablename) throws SQLException {
+
         String sql = "DROP TABLE " + tablename;
         statement.executeUpdate(sql);
     }
 
     public void insertMaxWeather(Weather weather) throws SQLException {
-        Statement statement = null;
-        try {
-            statement = conn.createStatement();
-            conn = connect(PATH_DATAMART);
+        Statement statement = conn.createStatement();
+            conn = connect();
             statement.execute(Translate.insertMaxWeather(weather));
-        } finally {
-            conn.close();
-        }
     }
 
     public void insertMinWeather(Weather weather) throws  SQLException{
         Statement statement = conn.createStatement();
-        conn = connect(PATH_DATAMART);
-        statement.execute(Translate.insertminWeather(weather));
+        conn = connect();
+        statement.execute(Translate.insertMinWeather(weather));
     }
-
-
-
 
 
     private void createTable(Statement statement) throws SQLException {

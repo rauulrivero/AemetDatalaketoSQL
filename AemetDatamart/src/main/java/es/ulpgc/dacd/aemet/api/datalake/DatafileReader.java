@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,18 +18,21 @@ import java.util.List;
  */
 public class DatafileReader implements Datalake{
 
-    public List<Weather> getWeathers(String pathname) throws IOException {
+    public List<Weather> getWeathers(String pathname) throws IOException, ParseException {
         File dir = new File(pathname);
         File[] files = dir.listFiles();
         List<Weather> weathers = new ArrayList<>();
+        if (files == null) return weathers;
         for (File file : files) {
             if (file.isFile()) {
                 String fileName = file.getName();
                 List<String> filelines = datalakereader(fileName);
                 for (String line: filelines) {
-                    JsonArray jsonArray = new JsonParser().parse(line).getAsJsonArray();
-                    List<Weather> weathersline = Command.add(jsonArray);
-                    weathers.addAll(weathersline);
+                    if (!line.isEmpty()) {
+                        JsonArray jsonArray = JsonParser.parseString(line).getAsJsonArray();
+                        List<Weather> weathersline = Command.add(jsonArray);
+                        weathers.addAll(weathersline);
+                    }
                 }
             }
         }

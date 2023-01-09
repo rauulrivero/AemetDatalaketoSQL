@@ -8,15 +8,18 @@ import spark.Response;
 import java.time.LocalDate;
 
 import java.util.List;
+import java.util.Timer;
 import java.util.stream.Collectors;
 
 import static es.ulpgc.dacd.aemet.api.Controller.maxweathers;
 import static es.ulpgc.dacd.aemet.api.Controller.minweathers;
 import static spark.Spark.get;
+import static spark.Spark.port;
 
 
 public class WebService implements APIService{
     public void start() {
+        port(9000);
         get("/v1/places/with-max-temperature", WebService::getMaxTemperatures);
         get("/v1/places/with-min-temperature", WebService::getMinTemperatures);
     }
