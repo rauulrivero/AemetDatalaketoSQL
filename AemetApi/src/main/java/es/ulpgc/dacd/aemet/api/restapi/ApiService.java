@@ -16,6 +16,9 @@ import static spark.Spark.get;
 import static spark.Spark.port;
 
 
+/**
+ * The type Api service.
+ */
 public class ApiService implements WebService {
     public void start() {
         port(9000);
