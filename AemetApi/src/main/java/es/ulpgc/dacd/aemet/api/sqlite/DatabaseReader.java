@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * The interface My sq lite.
  */
-public interface MySQLite {
+public interface DatabaseReader {
     /**
      * Gets weathers.
      *
@@ -16,5 +16,5 @@ public interface MySQLite {
      * @return the weathers
      * @throws SQLException the sql exception
      */
-    List<Weather> getWeathers(String tablename) throws SQLException;
+    List<Weather> read(String tablename) throws SQLException;
 }

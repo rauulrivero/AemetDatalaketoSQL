@@ -70,7 +70,6 @@ public class Command {
                     .parse(jsonObject.get("date").getAsString());
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             String time = new SimpleDateFormat("HH:mm:ss").format(date);
-            System.out.println(time);
             double temperature = jsonObject.get("temperature").getAsDouble();
             String station = jsonObject.get("station").getAsString();
 

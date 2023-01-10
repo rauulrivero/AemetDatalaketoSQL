@@ -47,5 +47,6 @@ public class Controller {
         sqLiteAemetDatabase.init();
         for (Weather maxweather: maxweathers) sqLiteAemetDatabase.insertMaxWeather(maxweather);
         for (Weather minweather: minweathers) sqLiteAemetDatabase.insertMinWeather(minweather);
+        sqLiteAemetDatabase.close();
     }
 }
