@@ -16,7 +16,7 @@ import static java.lang.String.format;
 /**
  * The type File datalake.
  */
-public class FileDatalake implements Datalake{
+public class DatalakeWriter implements FileWriter {
 
     private static final String PATH_LAST_RECORD_REGISTER = "lastTimeRegister/lastTimeRegister.data";
 
@@ -40,7 +40,7 @@ public class FileDatalake implements Datalake{
 
         Gson gson = new Gson();
 
-        try (FileWriter fw = new FileWriter(format(path), true)) {
+        try (java.io.FileWriter fw = new java.io.FileWriter(format(path), true)) {
             if (!events.isEmpty()) {
                 fw.append(gson.toJson(events));
                 fw.append("\n");
@@ -49,7 +49,7 @@ public class FileDatalake implements Datalake{
     }
 
     private void createFileLastRecord(Date lastDate) throws IOException {
-        try (FileWriter fw = new FileWriter(PATH_LAST_RECORD_REGISTER, false)) {
+        try (java.io.FileWriter fw = new java.io.FileWriter(PATH_LAST_RECORD_REGISTER, false)) {
             fw.append(String.valueOf(lastDate.getTime()));
         }
     }

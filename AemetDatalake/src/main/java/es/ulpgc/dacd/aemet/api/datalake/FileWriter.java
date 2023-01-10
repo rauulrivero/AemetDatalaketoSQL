@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * The interface Datalake.
  */
-public interface Datalake {
+public interface FileWriter {
     /**
      * Create file.
      *

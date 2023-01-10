@@ -43,7 +43,7 @@ public class AemetApiReader implements Sensor {
             float lat = jsonObject.get("lat").getAsFloat();
             float lon = jsonObject.get("lon").getAsFloat();
 
-            if (27.5 < lat && lat < 28.4 && -16 < lon && lon < -15) {
+            if ((27.5 < lat) && (lat < 28.4) && (-16 < lon) && (lon < -15) && (jsonObject.get("ta") != null)) {
                 String place = jsonObject.get("ubi").getAsString();
                 String fint = jsonObject.get("fint").getAsString();
                 Date ts = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss").parse(fint);

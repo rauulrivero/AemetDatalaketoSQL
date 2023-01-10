@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * The interface Datalake.
  */
-public interface DatafileReader {
+public interface FileReader {
     /**
      * Gets weathers.
      *
