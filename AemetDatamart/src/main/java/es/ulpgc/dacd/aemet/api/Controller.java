@@ -1,8 +1,8 @@
 package es.ulpgc.dacd.aemet.api;
 
 import es.ulpgc.dacd.aemet.api.command.Command;
+import es.ulpgc.dacd.aemet.api.datalake.DatafileReaderReader;
 import es.ulpgc.dacd.aemet.api.datalake.DatafileReader;
-import es.ulpgc.dacd.aemet.api.datalake.Datalake;
 import es.ulpgc.dacd.aemet.api.model.Weather;
 import es.ulpgc.dacd.aemet.api.sqlite.AemetSQLite;
 import es.ulpgc.dacd.aemet.api.sqlite.SQLiteAemetDatabase;
@@ -19,14 +19,14 @@ public class Controller {
 
 
     private final AemetSQLite sqLiteAemetDatabase;
-    private final Datalake datafileReader;
+    private final DatafileReader datafileReader;
 
     /**
      * Instantiates a new Controller.
      */
     public Controller() {
         sqLiteAemetDatabase = new SQLiteAemetDatabase();
-        datafileReader = new DatafileReader();
+        datafileReader = new DatafileReaderReader();
     }
 
     /**
