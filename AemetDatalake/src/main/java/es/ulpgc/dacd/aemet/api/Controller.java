@@ -1,7 +1,7 @@
 package es.ulpgc.dacd.aemet.api;
 
-import es.ulpgc.dacd.aemet.api.datalake.FileWriter;
 import es.ulpgc.dacd.aemet.api.datalake.DatalakeWriter;
+import es.ulpgc.dacd.aemet.api.datalake.FileWriter;
 import es.ulpgc.dacd.aemet.api.model.Weather;
 import es.ulpgc.dacd.aemet.api.sensor.AemetApiReader;
 import es.ulpgc.dacd.aemet.api.sensor.Sensor;

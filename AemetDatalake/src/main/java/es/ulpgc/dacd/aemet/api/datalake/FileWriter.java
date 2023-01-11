@@ -12,8 +12,8 @@ public interface FileWriter {
     /**
      * Create file.
      *
-     * @param weatherList the weather list
+     * @param events the weather list
      * @throws IOException the io exception
      */
-    void createFile(List<Weather> weatherList) throws IOException;
+    void createFile(List<Weather> events) throws IOException;
 }
